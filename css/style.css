@@ -1,0 +1,943 @@
+@font-face {
+  font-family: "utm-avo";
+  src: url(../fonts/utm-avo.ttf);
+}
+@font-face {
+  font-family: "Blackmango-Medium";
+  src: url(../fonts/blackmango-medium.otf);
+}
+@font-face {
+  font-family: "NVN-Motherland-Signature";
+  src: url(../fonts/nvn-motherland-signature.ttf);
+}
+@font-face {
+  font-family: "VL-Brown-Sugar";
+  src: url(../fonts/vl-brown-sugar.ttf);
+}
+@font-face {
+    font-family: "High Spirited";
+    src: url(../fonts/high-spirited_1.otf);
+}
+@font-face {
+    font-family: "Dancing Script";
+    src: url(../fonts/DancingScript-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Ergisa";
+    src: url(../fonts/ergisa-regular.otf);
+}
+
+body {
+    background-color: #333;
+    font-family: "utm-avo";
+    font-size: 16px;
+    --color-primary: rgb(0, 50, 100);
+    --text-color-primary: rgb(0, 50, 100);
+    --color-primary-raw: 0, 50, 100;
+}
+body a {
+  text-decoration: none;
+  color: inherit;
+}
+body .btn-link {
+  text-decoration: none;
+  color: inherit;
+  color: #3f51b5;
+}
+body img {
+  max-width: 100%;
+}
+
+.card-wrapper {
+  max-width: 480px;
+  margin: auto;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.card-wrapper.theme-red {
+  --color-primary: rgb(113, 1, 2);
+  --text-color-primary: rgb(113, 1, 2);
+  --color-primary-raw: 113, 1, 2;
+}
+
+.card-wrapper.theme-red #card-timelines .timeline-box .flower{
+    background-image: url(../images/timeline-flower-red.png);
+    background-position: center;
+    background-size: contain;
+}
+
+.card-wrapper.theme-red #card-timelines .timeline-box .flower img{
+    opacity:0;
+}
+
+
+.card-wrapper.theme-red img.img-themeable {
+  filter: brightness(0) saturate(100%) invert(12%) sepia(33%) saturate(5609%) hue-rotate(337deg) brightness(99%) contrast(125%);
+}
+.card-wrapper.theme-red div.div-themeable {
+  background: rgb(113, 1, 2) !important;
+}
+.card-wrapper.theme-green {
+  --color-primary: rgb(49, 81, 37);
+  --color-primary-raw: 49, 81, 37;
+  --text-color-primary: rgb(49, 81, 37);
+}
+.card-wrapper.theme-green img.img-themeable {
+  filter: brightness(0) saturate(100%) invert(21%) sepia(71%) saturate(410%) hue-rotate(59deg) brightness(100%) contrast(85%);
+}
+.card-wrapper.theme-green div.div-themeable {
+  background: rgb(49, 81, 37) !important;
+}
+
+.card-section {
+  position: relative;
+  padding: 50px 0;
+}
+
+.paper-bg {
+  position: relative;
+}
+.paper-bg::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-image: url(../images/bg-paper.jpg);
+  background-repeat: repeat;
+  background-position: left top;
+  background-attachment: scroll;
+  background-origin: content-box;
+  filter: brightness(106%);
+}
+.paper-bg .inner {
+  position: relative;
+  z-index: 1;
+}
+
+.card-banner {
+  position: relative;
+  padding: 0 20px;
+}
+.card-banner .card-banner-inner {
+  text-align: center;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 390/502;
+  border-width: 3px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: rgb(227, 236, 255);
+  z-index: 1;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 0;
+}
+.card-banner .card-banner-inner::before {
+  z-index: 0;
+  height: 50%;
+  width: 100%;
+  width: calc(100% + 6px);
+  position: absolute;
+  left: -3px;
+  bottom: 0;
+  content: "";
+  display: block;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgb(var(--color-primary-raw)));
+  background-color: initial;
+  background-size: initial;
+  background-origin: initial;
+  background-position: initial;
+  background-repeat: initial;
+  background-attachment: initial;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.card-banner .wedding-name {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  bottom: 0;
+  padding: 12px 10px;
+  margin-bottom: 0;
+}
+.card-banner .wedding-name > span {
+  display: block;
+  line-height: 1;
+}
+.card-banner .wedding-name .and {
+  text-align: center;
+}
+.card-banner .wedding-name .and img {
+  width: 46px;
+  height: 46px;
+  display: inline-block;
+}
+.card-banner .wedding-name .name {
+  font-family: "vl-brown-sugar";
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 1;
+  color: rgb(255, 255, 255);
+}
+.card-banner .wedding-name .name.groom {
+  text-align: left;
+  margin-bottom: -5px;
+}
+.card-banner .wedding-name .name.bride {
+  line-height: 1.2;
+  text-align: right;
+}
+
+#save-the-date .decor-flower1 {
+  transform: rotate(22deg);
+  position: absolute;
+  top: -50px;
+  left: -60px;
+}
+#save-the-date .decor-flower1 img {
+  width: 257px;
+}
+#save-the-date .title {
+  font-family: "nvn-motherland-signature";
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--color-primary);
+  text-align: center;
+}
+#save-the-date .wedding-date {
+  font-size: 30px;
+  line-height: 1;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: -2px;
+}
+#save-the-date .divider-img {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+#save-the-date .divider-img img {
+  height: 92px;
+}
+#save-the-date .parents {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+#save-the-date .parents .parent {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  line-height: 2;
+  color: var(--color-primary);
+}
+#save-the-date .parents .parent .label {
+  line-height: 1.6;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+  font-size: 20px;
+  border-bottom: 1px solid;
+  margin-bottom: 8px;
+}
+
+#save-the-date .parents.hide-titles .name-title {
+    display: none;
+}
+
+#save-the-date .groom-and-bride {
+  padding: 12px 35px;
+}
+#save-the-date .gb-box {
+  aspect-ratio: 336/398;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  background-size: cover;
+  background-origin: content-box;
+  background-position: 50% 0%;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  border-radius: 10px;
+  box-shadow: rgb(0, 0, 0) 0px 15px 20px -20px;
+}
+#save-the-date .gb-box .info {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 12px 12px;
+  z-index: 1;
+}
+#save-the-date .gb-box .info .label {
+  font-family: "nvn-motherland-signature";
+  font-size: 22px;
+  line-height: 1.6;
+  color: rgb(255, 255, 255);
+  transform: rotate(-7deg);
+  text-align: left;
+}
+#save-the-date .gb-box .info .fullname {
+  font-family: "vl-brown-sugar";
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 1;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-top: 14px;
+}
+#save-the-date .gb-box::before {
+  z-index: 0;
+  height: 45%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: "";
+  display: block;
+  border-radius: 0px 0px 21px 21px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgb(var(--color-primary-raw)));
+  background-color: initial;
+  background-size: initial;
+  background-origin: initial;
+  background-position: initial;
+  background-repeat: initial;
+  background-attachment: initial;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+#save-the-date .gb-box + .gb-box {
+  margin-top: 30px;
+}
+
+#card-info {
+  position: relative;
+  text-align: center;
+}
+#card-info .decor-flower2 {
+  position: absolute;
+  top: -50px;
+  right: -70px;
+  transform: perspective(1000px) rotate(-22deg) rotateY(180deg);
+}
+#card-info .decor-flower2 img {
+  width: 227px;
+}
+#card-info .inner {
+  position: relative;
+  z-index: 1;
+  padding: 50px 16px;
+  padding-top: 0;
+}
+#card-info .welcome-icon {
+  text-align: center;
+  margin-bottom: 16px;
+}
+#card-info .welcome-icon img {
+  width: 105px;
+}
+#card-info .welcome-text {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--text-color-primary);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
+#card-info .groom-bride-names .name {
+  font-family: "vl-brown-sugar";
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 1.2;
+  color: var(--text-color-primary);
+  text-align: center;
+}
+#card-info .groom-bride-names .and {
+  text-align: center;
+}
+#card-info .groom-bride-names .and img {
+  width: 44px;
+  height: 44px;
+}
+
+#card-info .inner .events.reverse{
+    display:flex;
+    flex-direction:column-reverse;
+}
+
+#card-info .date-and-time {
+  padding: 34px 0;
+  text-align: center;
+}
+#card-info .date-and-time .title {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.6;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+}
+#card-info .date-and-time .title > div {
+  background-color: var(--text-color-primary);
+  color: #fff;
+  border-radius: 100px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 30px;
+}
+#card-info .date-and-time .date-and-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+#card-info .date-and-time .date-and-time-row .main {
+  text-align: center;
+}
+#card-info .date-and-time .date-and-time-row .vertical-line {
+  height: 62px;
+  display: inline-block;
+  border-left: 1px solid #000;
+}
+#card-info .date-and-time .date-and-time-row .time {
+  flex: 1;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+  color: var(--text-color-primary);
+  text-align: right;
+}
+#card-info .date-and-time .date-and-time-row .year {
+  flex: 1;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+  color: var(--text-color-primary);
+  text-align: left;
+}
+#card-info .date-and-time .dayofweek {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--text-color-primary);
+  text-align: center;
+  text-transform: uppercase;
+}
+#card-info .date-and-time .day {
+  font-family: "blackmango-medium";
+  font-size: 80px;
+  line-height: 1;
+  color: var(--text-color-primary);
+  text-align: center;
+  transform: rotate(1deg);
+  text-transform: uppercase;
+  margin: 5px 0;
+}
+#card-info .date-and-time .month {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--text-color-primary);
+  text-align: center;
+  text-transform: uppercase;
+}
+#card-info .date-and-time .lunar-date {
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-color-primary);
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 16px;
+}
+#card-info .location {
+  text-align: center;
+  color: var(--text-color-primary);
+  line-height: 1.6;
+}
+#card-info .location .name {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+  text-transform: uppercase;
+  text-align: center;
+}
+#card-info .location .address {
+  font-size: 16px;
+}
+#card-info .location .map-btn {
+  border: 1px solid var(--color-primary);
+  margin-top: 16px;
+  font-size: 14px;
+  display: inline-block;
+  font-weight: bold;
+  /* text-transform: uppercase; */
+  background-color: rgba(var(--color-primary-raw), 0.7);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 18px;
+  border-radius: 50px;
+}
+
+#card-timelines {
+  padding-top: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+#card-timelines .img-bg-title {
+  position: relative;
+  aspect-ratio: 391/220;
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#card-timelines .img-bg-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgb(var(--color-primary-raw)));
+  background-color: initial;
+  background-size: initial;
+  background-origin: initial;
+  background-position: initial;
+  background-repeat: initial;
+  background-attachment: initial;
+  z-index: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+#card-timelines .img-bg-title .title {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+#card-timelines .img-bg-title .title img {
+  width: 141px;
+}
+#card-timelines .inner {
+  position: relative;
+}
+#card-timelines .timelines {
+  padding: 50px 30px;
+}
+#card-timelines .timelines .timeline-title {
+  font-family: "nvn-motherland-signature";
+  font-size: 25px;
+  line-height: 1.6;
+  color: var(--color-primary);
+  text-align: center;
+}
+#card-timelines .timeline-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--color-primary);
+  position: relative;
+  padding: 18px 0;
+}
+#card-timelines .timeline-box:first-child::before {
+  height: 50%;
+}
+#card-timelines .timeline-box:last-child::before {
+  height: 50%;
+  top: 0;
+  bottom: unset;
+}
+#card-timelines .timeline-box::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background-color: rgb(227, 236, 255);
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+#card-timelines .timeline-box .img {
+  flex: 1;
+  text-align: right;
+}
+#card-timelines .timeline-box .img img {
+  max-width: 81px;
+}
+#card-timelines .timeline-box .flower {
+  position: relative;
+  z-index: 1;
+}
+#card-timelines .timeline-box .flower img {
+  width: 52px;
+}
+#card-timelines .timeline-box .content {
+  flex: 1;
+}
+#card-timelines .timeline-box .content .time {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.6;
+  color: var(--color-primary);
+}
+#card-timelines .timeline-box .content .text {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+#countdown {
+  margin-top: 50px;
+}
+#countdown .countdown-title {
+  font-family: "nvn-motherland-signature";
+  font-size: 30px;
+  line-height: 1.6;
+  color: var(--color-primary);
+  text-align: center;
+}
+#countdown .countdown-inner {
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  max-width: 420px;
+  margin: auto;
+}
+#countdown .box {
+  text-align: center;
+  flex: 1;
+  padding: 12px 0;
+  color: var(--color-primary);
+}
+#countdown .box .value {
+  line-height: 1;
+  font-weight: 700;
+  font-size: 24px;
+}
+#countdown .box .label {
+  line-height: 1;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#card-gallery {
+  padding: 0 8px;
+}
+#card-gallery .card-section-title-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+#card-gallery .card-section-title-wrapper .v-line {
+  border-top: 1px solid var(--color-primary);
+  margin-left: 12px;
+  flex: 1;
+}
+#card-gallery .card-section-title {
+  font-size: 20px;
+  line-height: 1.6;
+  color: inherit;
+  margin-bottom: 0;
+  color: var(--color-primary);
+  font-family: "nvn-motherland-signature";
+}
+
+.photo-grid {
+  -moz-column-count: 2;
+       column-count: 2;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+}
+.photo-grid .photo {
+  width: 100%;
+  display: block;
+  margin-bottom: 5px;
+}
+.photo-grid .photo img {
+  width: 100%;
+  display: block;
+}
+.photo-grid + .view-more {
+  margin-top: 50px;
+}
+
+.photo-grid[data-masonry] {
+  -moz-column-gap: unset;
+       column-gap: unset;
+  -moz-column-count: unset;
+       column-count: unset;
+  margin: 0 -3px;
+}
+.photo-grid[data-masonry] .photo {
+  padding: 3px;
+  width: 50%;
+  margin-bottom: 0;
+}
+.photo-grid[data-masonry] .photo img {
+  height: auto;
+}
+
+#card-gift {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 50px;
+}
+
+#card-gift .inner {
+  position: relative;
+  padding: 50px 16px;
+  border-bottom: 1px dashed var(--color-primary);
+}
+#card-gift .card-section-title {
+  font-size: 42px;
+  line-height: 1.6;
+  color: inherit;
+  margin-bottom: 0;
+  color: var(--text-color-primary);
+  font-family: "nvn-motherland-signature";
+  text-align: center;
+}
+#card-gift .card-section-subtitle {
+ margin-bottom: 24px;
+  color: var(--text-color-primary);
+  text-align: center;
+}
+#card-gift .present-box {
+  text-align: center;
+}
+#card-gift .present-box .present-box-inner {
+  color: var(--color-primary);
+  border: 2px solid currentColor;
+  padding: 16px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: auto;
+  cursor:pointer;
+}
+#card-gift .present-box .present-box-inner img {
+  width: 200px;
+}
+
+#card-comments .decor-flower-right {
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+  width: 15%;
+}
+#card-comments .decor-flower-left {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 20%;
+}
+#card-comments .inner {
+  position: relative;
+  padding: 0 16px;
+}
+#card-comments .card-section-title {
+  font-size: 42px;
+  line-height: 1.6;
+  color: inherit;
+  margin-bottom: 0;
+  color: var(--text-color-primary);
+  font-family: "nvn-motherland-signature";
+  text-align: center;
+}
+#card-comments .card-section-subtitle {
+  margin-bottom: 24px;
+  color: var(--text-color-primary);
+  text-align: center;
+}
+
+#card-comments .comment-form .form-control {
+  font-size: 14px;
+}
+#card-comments .comment-list {
+  padding-bottom: 16px;
+  border: 1px solid #e5e5e5;
+}
+#card-comments .comment-list .comment-box:last-child {
+  border: 0;
+}
+
+#card-footer {
+  position: relative;
+}
+#card-footer::before {
+  z-index: 1;
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: "";
+  display: block;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgb(var(--color-primary-raw)));
+  background-color: initial;
+  background-size: initial;
+  background-origin: initial;
+  background-position: initial;
+  background-repeat: initial;
+  background-attachment: initial;
+}
+#card-footer .card-footer-image {
+  aspect-ratio: 420/427;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.55;
+}
+#card-footer .card-footer-inner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 24px 12px;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  padding-bottom: 16px;
+}
+#card-footer .card-footer-inner .text {
+  font-family: "nvn-motherland-signature";
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+#card-footer .card-footer-inner .title {
+  font-family: "vl-brown-sugar";
+  font-size: 30px;
+  line-height: 1.6;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+#card-calendar {
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  text-align: center;
+  position: relative;
+}
+#card-calendar .top-bar {
+  display: inline-block;
+  width: 80px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+#card-calendar > .inner {
+  position: relative;
+  z-index: 1;
+  padding: 36px 16px;
+}
+#card-calendar .calendar-header {
+  margin-bottom: 30px;
+}
+#card-calendar .calendar-header .year {
+  font-size: 95.22px;
+  line-height: 1;
+  color: var(--text-color-primary);
+  text-align: center;
+  margin-bottom: -45px;
+  font-family: "blackmango-medium";
+}
+#card-calendar .calendar-header .month {
+  font-family: "High Spirited";
+  font-size: 80.69px;
+  line-height: 1;
+  color: var(--text-color-primary);
+  text-align: center;
+}
+#card-calendar .mini_calendar {
+  --tb-border-color: transparent;
+  --tb-color: var(--text-color-primary);
+  --tb-day-color: var(--text-color-primary);
+  --tb-header-color: var(--text-color-primary);
+  --tb-color-wedding-day: var(--text-color-primary);
+  --tb-color-wedding-day-text: var(--text-color-primary);
+}
+#card-calendar .mini_calendar th {
+  text-transform: uppercase;
+}
+#card-calendar .mini_calendar table tr td {
+  height: 35px;
+}
+#card-calendar .decor-flower3 {
+  transform: rotate(22deg);
+  position: absolute;
+  top: -50px;
+  left: -60px;
+}
+#card-calendar .decor-flower3 img {
+  width: 257px;
+}
+
+@media screen and (min-width: 600px) {
+  .card-banner .wedding-name .name {
+    font-size: 40px;
+  }
+  .card-banner .wedding-name .and img {
+    width: 55px;
+    height: 55px;
+  }
+  #save-the-date .title {
+    font-size: 24px;
+  }
+  #save-the-date .wedding-date {
+    font-size: 34px;
+  }
+  #save-the-date .divider-img img {
+    height: 110px;
+  }
+  #save-the-date .parents {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  #save-the-date .parents .parent {
+    font-size: 14px;
+  }
+  #save-the-date .parents .parent .label {
+    font-size: 20px;
+  }
+  #save-the-date .groom-and-bride {
+    padding: 12px 35px;
+    text-align: center;
+  }
+  #save-the-date .gb-box {
+    max-width: 360px;
+  }
+  #save-the-date .gb-box .info {
+    padding: 16px 12px;
+  }
+  #save-the-date .gb-box .info .label {
+    font-size: 24px;
+  }
+  #save-the-date .gb-box .info .fullname {
+    font-size: 36px;
+  }
+}

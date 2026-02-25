@@ -1,0 +1,97 @@
+.mini_calendar {
+  position: relative;
+  max-width: 420px;
+  margin: auto;
+  --tb-border-color: #2a2a2d;
+  --tb-header-color: #484747;
+  --tb-day-color: #808080;
+  --tb-color-wedding-day: red;
+  --tb-color-wedding-day-text: #fff;
+}
+.mini_calendar.mini_calendar_white {
+  --tb-border-color: #fff;
+  --tb-header-color: #fff;
+  --tb-day-color: #fff;
+}
+.mini_calendar.mini_calendar_white table {
+  --tb-border-color: #fff;
+  --tb-color: #fff;
+}
+.mini_calendar.mini_calendar_white table .calendar-month {
+  color: #fff;
+}
+.mini_calendar table {
+  border-bottom: 1px solid var(--tb-border-color);
+  width: 100%;
+}
+.mini_calendar table .calendar-month {
+  caption-side: top;
+  text-align: center;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  font-size: 115%;
+}
+.mini_calendar table tr th {
+  text-align: center;
+  padding: 8px 0;
+  color: var(--tb-header-color);
+  border-top: 1px solid var(--tb-border-color);
+  border-bottom: 1px solid var(--tb-border-color);
+  font-size: 0.9em;
+  font-weight: normal;
+  text-align: center;
+}
+.mini_calendar table tr td {
+  padding: 0;
+  height: 40px;
+  color: var(--tb-day-color);
+  text-align: center;
+}
+.mini_calendar table .today {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  position: relative;
+  text-align: center;
+  padding: 0;
+}
+.mini_calendar table .today .heart {
+  font-size: 36px;
+  line-height: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  top: -3px;
+  left: -3px;
+  visibility: hidden;
+}
+.mini_calendar table .today .heart.started + span.day {
+  color: var(--tb-color-wedding-day);
+}
+.mini_calendar.mini_calendar_white table .today .heart.started + span.day {
+  color: var(--tb-day-color);
+}
+.mini_calendar table .today .heart.started i {
+  color: var(--tb-color-wedding-day);
+}
+.mini_calendar table .today.fill .heart.started + span.day {
+  color: var(--tb-color-wedding-day-text);
+}
+.mini_calendar table .today.fill .heart.started i {
+  color: var(--tb-color-wedding-day);
+}
+.mini_calendar table .today i {
+  line-height: 1;
+  color: transparent;
+}
+.mini_calendar table .today span.day {
+  display: block;
+  color: var(--tb-day-color);
+  font-weight: 700;
+  position: relative;
+  transition: color 0.1s;
+}
