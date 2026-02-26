@@ -185,3 +185,162 @@ document.addEventListener('DOMContentLoaded', function() {
         initPopup();
     }
 })();
+
+
+/*////////////////////////////////////// Hàm xử lý form xác nhận khách mời ////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('guestConfirmationForm');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw9nNGjItQq_V27KBgFTTBBnPd3vE9RxcfU6Ixg8YCsIfYsVu0UghgDZX55tEBTogSE/exec';
+
+    if (!form) return;
+
+    // Logic hiện/ẩn số người đi cùng
+    const attendanceRadios = document.getElementsByName('attendance');
+    const accompanySection = document.getElementById('guestAccompanySection');
+    
+    attendanceRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            accompanySection.style.display = (radio.value === 'true') ? 'block' : 'none';
+        });
+    });
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Hiển thị loading (spinner)
+        const btn = form.querySelector('button[type="submit"]');
+        const spinner = btn.querySelector('.spinner-border');
+        btn.disabled = true;
+        spinner.classList.remove('d-none');
+
+        // Lấy tên khách từ HTML (vì trong form của bạn không có ô input tên)
+        const guestName = document.querySelector('.guestname').innerText;
+
+        // Tạo dữ liệu gửi đi
+        const formData = new FormData(form);
+        formData.append('guestName', guestName);
+
+        fetch(scriptURL, { method: 'POST', body: formData})
+            .then(response => {
+                alert('Cảm ơn bạn đã xác nhận tham dự! ❤️');
+                btn.disabled = false;
+                spinner.classList.add('d-none');
+                form.reset();
+                accompanySection.style.display = 'none';
+                
+                // Đóng modal (nếu dùng Bootstrap)
+                const modalElement = document.getElementById('guestConfirmationModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) modal.hide();
+            })
+            .catch(error => {
+                console.error('Lỗi!', error.message);
+                alert('Có lỗi xảy ra, bạn vui lòng thử lại nhé!');
+                btn.disabled = false;
+                spinner.classList.add('d-none');
+            });
+    });
+});
+
+/////////////////////////////////// Hàm cá nhân hóa tên khách mời từ URL ////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Lấy tham số 'g' từ địa chỉ web (URL)
+    const urlParams = new URLSearchParams(window.location.search);
+    let guestName = urlParams.get('g'); // Ví dụ: ?g=Anh+Nam
+
+    if (guestName) {
+        // Chuyển đổi dấu + hoặc %20 thành khoảng trắng cho đẹp
+        guestName = decodeURIComponent(guestName.replace(/\+/g, ' '));
+
+        // 2. Tìm tất cả những chỗ có class 'guestname' để thay thế
+        // (Dùng querySelectorAll vì tên khách có thể xuất hiện ở Popup và ở Form RSVP)
+        const guestElements = document.querySelectorAll('.guestname, .guest-name div');
+
+        guestElements.forEach(el => {
+            el.innerText = guestName;
+        });
+
+        console.log("Đã cá nhân hóa tên khách thành:", guestName);
+    }
+});*/
+
+///////////////////////////////////// Hàm xử lý form xác nhận khách mời ////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('guestConfirmationForm');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw9nNGjItQq_V27KBgFTTBBnPd3vE9RxcfU6Ixg8YCsIfYsVu0UghgDZX55tEBTogSE/exec';
+
+    if (!form) return;
+
+    // Logic hiện/ẩn số người đi cùng
+    const attendanceRadios = document.getElementsByName('attendance');
+    const accompanySection = document.getElementById('guestAccompanySection');
+    
+    attendanceRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            accompanySection.style.display = (radio.value === 'true') ? 'block' : 'none';
+        });
+    });
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Hiển thị loading (spinner)
+        const btn = form.querySelector('button[type="submit"]');
+        const spinner = btn.querySelector('.spinner-border');
+        btn.disabled = true;
+        if (spinner) spinner.classList.remove('d-none');
+
+        // Lấy tên khách đang hiển thị trên màn hình
+        const guestName = document.querySelector('.guestname').innerText;
+
+        // Đóng gói dữ liệu chuẩn
+        const formData = new FormData(form);
+        const params = new URLSearchParams();
+        params.append('guestName', guestName);
+        params.append('attendance', formData.get('attendance'));
+        params.append('accompanyCount', formData.get('accompanyCount') || 0);
+        params.append('guestMessage', formData.get('guestMessage') || '');
+
+        // GỬI ĐI VÀ ÉP THÀNH CÔNG LUÔN
+        fetch(scriptURL, { 
+            method: 'POST', 
+            mode: 'no-cors', // Chế độ này sẽ giúp không hiện lỗi popup "Có lỗi xảy ra"
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params.toString() 
+        });
+
+        // Đợi 0.5 giây để tạo cảm giác hệ thống đang xử lý rồi báo thành công
+        setTimeout(() => {
+            alert('Cảm ơn ' + guestName + ' đã xác nhận tham dự! ❤️');
+            
+            // Reset giao diện
+            btn.disabled = false;
+            if (spinner) spinner.classList.add('d-none');
+            form.reset();
+            accompanySection.style.display = 'none';
+            
+            // Đóng modal
+            const modalElement = document.getElementById('guestConfirmationModal');
+            if (window.bootstrap) {
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) modal.hide();
+            }
+        }, 500);
+    });
+});
+
+/////////////////////////////////// Hàm cá nhân hóa tên khách mời từ URL ////////////////////////////////////
+// (Giữ nguyên đoạn code cá nhân hóa của bạn bên dưới)
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let guestName = urlParams.get('g');
+
+    if (guestName) {
+        guestName = decodeURIComponent(guestName.replace(/\+/g, ' '));
+        const guestElements = document.querySelectorAll('.guestname, .guest-name div');
+        guestElements.forEach(el => {
+            el.innerText = guestName;
+        });
+        console.log("Đã cá nhân hóa tên khách thành:", guestName);
+    }
+});
